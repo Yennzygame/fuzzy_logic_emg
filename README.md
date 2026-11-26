@@ -9,6 +9,12 @@ La motivación es el "trilema" del control protésico: exactitud alta, latencia
 ultra-baja e **interpretabilidad clínica** (caja de cristal), frente a las redes
 CNN/BiLSTM que son caja negra.
 
+<p align="center">
+  <a href="https://github.com/Yennzygame/fuzzy_logic_emg">
+    <img src="outputs/figures/11_qr_repo.png" alt="QR del repositorio en GitHub" width="160">
+  </a>
+</p>
+
 ## Resultados reproducidos en esta carpeta
 
 | Métrica | Valor obtenido | Valor citado en el contexto |
@@ -72,7 +78,7 @@ proyecto_fuzzy_emg/
 │   ├── 08_scatter_centroides.py ← proyecciones 2D y centroides
 │   └── run_all.py               ← ejecuta 01 → 02 → 03 → 07 → 08
 ├── outputs/
-│   ├── figures/                 ← 10 figuras PNG
+│   ├── figures/                 ← 11 figuras PNG (incluye el QR del repo)
 │   ├── metrics/                 ← CSV/JSON con métricas y matriz de confusión
 │   └── models/                  ← modelo FCM+TSK, reglas y pesos
 ├── docs/
