@@ -35,12 +35,12 @@ una arquitectura con muchas reglas. No existe un ganador único: hay una
 
 | Modelo | Exactitud | F1-macro | Latencia (Python) | Interpretabilidad |
 | :--- | ---: | ---: | ---: | :--- |
-| FCM + TSK (pertenencia FCM) | 97.19 % | 0.964 | 0.1100 ms | Intrínseca (caja de cristal) |
-| FCM + TSK (pertenencia Gaussiana) | 97.50 % | 0.969 | 0.1439 ms | Intrínseca (caja de cristal) |
-| 5 gaussianas por gesto + TSK | 98.28 % | 0.979 | 0.0614 ms | Intrínseca (caja de cristal) |
-| K-means rígido + regla de mayoría | 92.04 % | 0.906 | 0.0081 ms | Baja (centroides rígidos) |
-| KNN (k=5) | 96.57 % | 0.955 | 0.4314 ms | Nula |
-| Random Forest (200 árboles) | 99.06 % | 0.989 | 41.9201 ms | Media (importancias post-hoc) |
+| FCM + TSK (pertenencia FCM) | 97.19 % | 0.964 | 0.1822 ms | Intrínseca (caja de cristal) |
+| FCM + TSK (pertenencia Gaussiana) | 97.50 % | 0.969 | 0.2371 ms | Intrínseca (caja de cristal) |
+| 5 gaussianas por gesto + TSK | 98.28 % | 0.979 | 0.1016 ms | Intrínseca (caja de cristal) |
+| K-means rígido + regla de mayoría | 92.04 % | 0.906 | 0.0135 ms | Baja (centroides rígidos) |
+| KNN (k=5) | 96.57 % | 0.955 | 0.6812 ms | Nula |
+| Random Forest (200 árboles) | 99.06 % | 0.989 | 82.9060 ms | Media (importancias post-hoc) |
 
 Aquí sí se puede afirmar: el modelo propuesto gana ~5 puntos al k-means
 rígido, es comparable a KNN y pierde frente a Random Forest, pero es ~300 veces
@@ -59,7 +59,7 @@ Para $c=5$ reglas y $d=32$ características:
 
 ≈ **985 operaciones escalares** por decisión. En C embebido
 eso son microsegundos, lo que hace creíble el valor reportado de 0,003 ms. En
-Python/NumPy medimos 0.1100 ms: el costo lo domina el
+Python/NumPy medimos 0.1822 ms: el costo lo domina el
 *overhead* del interprete, no la aritmética.
 
 ### 3.2 Huella del modelo
@@ -127,8 +127,8 @@ La señal sEMG no es discreta:
 
 Un clasificador *crisp* con umbral duro comete **conmutación violenta**: un
 poco de ruido cruza el umbral y el servo salta. FCM asigna grados continuos
-($0\le u\le1$), por lo que la salida TSK se desplaza suavemente. Nuestros
-índices, PC=0.3454 y PE=1.2856 (máximo ln5=1,609), confirman que la
+($0\le u\le1$), por lo que la salida TSK se desplaza suavemente. Los índices
+medidos, PC=0.3454 y PE=1.2856 (máximo ln5=1,609), confirman que la
 partición conserva superposición moderada-alta.
 
 La consecuencia observable está en la matriz de confusión: reposo, puño

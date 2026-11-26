@@ -330,6 +330,11 @@ Las ecuaciones completas están en `outputs/models/modelo_fcm_tsk.json`
 ![Importancia](../outputs/figures/05_importancia_canales.png)
 ![Pareto](../outputs/figures/06_pareto.png)
 ![Convergencia](../outputs/figures/07_convergencia_fcm.png)
+![Centroides proyectados](../outputs/figures/10_scatter_centroides.png)
+
+La proyección de los centroides a 2D se genera con
+`src/08_scatter_centroides.py`; las coordenadas están en
+`outputs/metrics/proyeccion_centroides.csv`.
 
 ## 6. Advertencias metodológicas
 

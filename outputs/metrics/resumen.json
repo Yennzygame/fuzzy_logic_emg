@@ -95,42 +95,42 @@
       "exactitud": 0.9719188767550702,
       "f1_macro": 0.9641258741258742,
       "f1_weighted": 0.971005749320882,
-      "latencia_ms": 0.11
+      "latencia_ms": 0.1822
     },
     {
       "modelo": "FCM + TSK (pertenencia Gaussiana)",
       "exactitud": 0.9750390015600624,
       "f1_macro": 0.9693104781753089,
       "f1_weighted": 0.9747789865075085,
-      "latencia_ms": 0.1439
+      "latencia_ms": 0.2371
     },
     {
       "modelo": "5 gaussianas por gesto + TSK",
       "exactitud": 0.982839313572543,
       "f1_macro": 0.9785656286139062,
       "f1_weighted": 0.9826002253905509,
-      "latencia_ms": 0.0614
+      "latencia_ms": 0.1016
     },
     {
       "modelo": "K-means rígido + regla de mayoría",
       "exactitud": 0.9204368174726989,
       "f1_macro": 0.9060410186384287,
       "f1_weighted": 0.9201229866331718,
-      "latencia_ms": 0.008150000000000001
+      "latencia_ms": 0.0135
     },
     {
       "modelo": "KNN (k=5)",
       "exactitud": 0.9656786271450858,
       "f1_macro": 0.9546506581802401,
       "f1_weighted": 0.9638801435176167,
-      "latencia_ms": 0.43135
+      "latencia_ms": 0.6812
     },
     {
       "modelo": "Random Forest (200 árboles)",
       "exactitud": 0.9906396255850234,
       "f1_macro": 0.9886378737541529,
       "f1_weighted": 0.9905945340803666,
-      "latencia_ms": 41.9201
+      "latencia_ms": 82.90605
     }
   ],
   "matriz_confusion": [
@@ -219,7 +219,8 @@
       "06_pareto.png",
       "07_convergencia_fcm.png",
       "08_barrido_m.png",
-      "09_pareto_multiparadigma.png"
+      "09_pareto_multiparadigma.png",
+      "10_scatter_centroides.png"
     ],
     "modelo": "models/modelo_fcm_tsk.json"
   }

@@ -1,8 +1,8 @@
 # Artefactos generados
 
-Todos los archivos de esta carpeta se regeneran con `python src/run_all.py`
-(más `src/06_barrido_m.py` y `src/07_analisis_comparativo.py`). No los edites
-a mano.
+Todos los archivos de esta carpeta se regeneran con `python src/run_all.py`,
+excepto `barrido_m.csv` y su figura, que se generan con
+`python src/06_barrido_m.py`. No los edites a mano.
 
 ## `models/`
 
@@ -23,6 +23,8 @@ a mano.
 * `matriz_confusion.csv`: 5×5 con etiquetas reales y predichas.
 * `resumen.json`: métricas agregadas en un solo archivo.
 * `barrido_m.csv`: PC, PE y exactitud para $m\in[1{,}2,10]$.
+* `proyeccion_centroides.csv`: coordenadas PCA y LDA de los 5 centroides, con la
+  regla coincidente cuando dos centros son iguales.
 
 ## `figures/`
 
@@ -36,3 +38,5 @@ a mano.
 8. Barrido del exponente $m$
 9. Mapa multiparadigma: exactitud vs. latencia, separando literatura de
    reproducción local y marcando el umbral clínico de 100–125 ms
+10. Scatter de las ventanas de entrenamiento y los centroides FCM proyectados a
+    2D con PCA y LDA

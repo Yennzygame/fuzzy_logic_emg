@@ -294,8 +294,8 @@ La señal sEMG no es discreta:
 
 Un clasificador *crisp* con umbral duro comete **conmutación violenta**: un
 poco de ruido cruza el umbral y el servo salta. FCM asigna grados continuos
-($0\\le u\\le1$), por lo que la salida TSK se desplaza suavemente. Nuestros
-índices, PC={pc:.4f} y PE={pe:.4f} (máximo ln5=1,609), confirman que la
+($0\\le u\\le1$), por lo que la salida TSK se desplaza suavemente. Los índices
+medidos, PC={pc:.4f} y PE={pe:.4f} (máximo ln5=1,609), confirman que la
 partición conserva superposición moderada-alta.
 
 La consecuencia observable está en la matriz de confusión: reposo, puño

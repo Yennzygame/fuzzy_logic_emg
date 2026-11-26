@@ -27,6 +27,8 @@ Ejecuta, en orden:
 3. `03_evaluar.py` → `outputs/metrics/*`, `outputs/figures/*`, `docs/03_resultados.md`
 4. `07_analisis_comparativo.py` → `comparacion_multiparadigma.csv`,
    `09_pareto_multiparadigma.png` y `docs/05_analisis_comparativo.md`
+5. `08_scatter_centroides.py` → `10_scatter_centroides.png` y
+   `proyeccion_centroides.csv`
 
 Salida esperada (resumen):
 
@@ -39,7 +41,7 @@ Listo. Exactitud FCM+TSK: 97.19%
 ## Comandos adicionales
 
 ```bash
-# Ver una inferencia desglosada (ideal para explicar en clase)
+# Ver una inferencia desglosada
 python src/05_demo_inferencia.py
 
 # ¿Cómo cambia el solapamiento si cambio m?
@@ -47,6 +49,9 @@ python src/06_barrido_m.py
 
 # Análisis comparativo multidimensional (requiere haber corrido 03_evaluar.py)
 python src/07_analisis_comparativo.py
+
+# Scatter de centroides en 2D (requiere 01_preparar_datos.py y 02_entrenar_fcm_tsk.py)
+python src/08_scatter_centroides.py
 
 # Inferencia en streaming desde el CSV, sin hardware (dry run)
 python src/04_inferencia_tiempo_real.py --max-muestras 4000
@@ -102,9 +107,9 @@ Tras cambiar algo, vuelve a correr `python src/run_all.py`.
 * **No aparece `docs/03_resultados.md`**: ejecuta `03_evaluar.py`; lo genera.
 * **`pyomyo` / `adafruit_servokit` no instalados**: solo se importan si usas
   `--fuente myo` o `--servos`. El modo `replay` funciona igual.
-* **Figuras no se sobrescriben**: `guardar()` en `03_evaluar.py` (y en
-  `07_analisis_comparativo.py`) usa nombres temporales y reintenta para evitar
-  bloqueos de archivos en Windows.
+* **Figuras no se sobrescriben**: `guardar()` en `03_evaluar.py`,
+  `07_analisis_comparativo.py` y `08_scatter_centroides.py` usa nombres
+  temporales y reintenta para evitar bloqueos de archivos en Windows.
 * **`07_analisis_comparativo.py` falla con `FileNotFoundError`**: ejecuta antes
   `src/03_evaluar.py`, porque lee `outputs/metrics/comparacion_modelos.csv` y
   `outputs/metrics/resumen.json`.

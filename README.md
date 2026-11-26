@@ -14,7 +14,7 @@ CNN/BiLSTM que son caja negra.
 | Métrica | Valor obtenido | Valor citado en el contexto |
 | :--- | ---: | ---: |
 | Ventanas analizadas | 2.139 | 2.139 |
-| Partición train / test | 1.497 / 642 (70/30) | 1.497 / 642 |
+| Partición train / test | 1.498 / 641 (70/30) | 1.497 / 642 |
 | Exactitud FCM + TSK | **97,19 %** | 97,66 % |
 | PC (FCM) | **0,3454** | 0,3905 |
 | PE (FCM) | **1,2856** | 1,1849 |
@@ -38,8 +38,16 @@ de diseño) y **reproducción local** (mismo split, para comparar modelos).
 [`outputs/metrics/comparacion_multiparadigma.csv`](outputs/metrics/comparacion_multiparadigma.csv) ·
 [`outputs/figures/09_pareto_multiparadigma.png`](outputs/figures/09_pareto_multiparadigma.png)
 
-Los criterios de comparación están documentados en
-`referencias/scripts_originales/comparacion_referencia.txt`.
+Los criterios de comparación se resumen en el propio análisis.
+
+## Visualización de los centroides
+
+Como los centroides tienen 32 dimensiones, se proyectan a 2D con PCA y LDA
+usando la misma transformación aplicada a las ventanas. La figura permite ver
+las nubes de cada gesto y la posición de las 5 reglas. Confirma gráficamente que
+R1 coincide con R3 y R2 con R4 (3 posiciones útiles).
+
+![Centroides proyectados](outputs/figures/10_scatter_centroides.png)
 
 ## Estructura
 
@@ -61,9 +69,10 @@ proyecto_fuzzy_emg/
 │   ├── 05_demo_inferencia.py    ← una inferencia paso a paso
 │   ├── 06_barrido_m.py          ← sensibilidad del exponente m
 │   ├── 07_analisis_comparativo.py ← comparación multiparadigma
-│   └── run_all.py               ← ejecuta 01 → 02 → 03 → 07
+│   ├── 08_scatter_centroides.py ← proyecciones 2D y centroides
+│   └── run_all.py               ← ejecuta 01 → 02 → 03 → 07 → 08
 ├── outputs/
-│   ├── figures/                 ← 9 figuras PNG
+│   ├── figures/                 ← 10 figuras PNG
 │   ├── metrics/                 ← CSV/JSON con métricas y matriz de confusión
 │   └── models/                  ← modelo FCM+TSK, reglas y pesos
 ├── docs/
@@ -85,6 +94,7 @@ python -m pip install -r requirements.txt
 python src/run_all.py
 python src/06_barrido_m.py
 python src/07_analisis_comparativo.py
+python src/08_scatter_centroides.py
 python src/05_demo_inferencia.py
 python src/04_inferencia_tiempo_real.py --max-muestras 4000
 ```

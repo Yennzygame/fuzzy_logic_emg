@@ -22,12 +22,12 @@ en la tabla siguiente y exportada a `outputs/models/modelo_gaussiano_clases.json
 
 | Modelo | Exactitud | F1-macro | Latencia (ms/muestra) |
 | :--- | ---: | ---: | ---: |
-| FCM + TSK (pertenencia FCM) | 97.19% | 0.964 | 0.1100 |
-| FCM + TSK (pertenencia Gaussiana) | 97.50% | 0.969 | 0.1439 |
-| 5 gaussianas por gesto + TSK | 98.28% | 0.979 | 0.0614 |
-| K-means rígido + regla de mayoría | 92.04% | 0.906 | 0.0082 |
-| KNN (k=5) | 96.57% | 0.955 | 0.4314 |
-| Random Forest (200 árboles) | 99.06% | 0.989 | 41.9201 |
+| FCM + TSK (pertenencia FCM) | 97.19% | 0.964 | 0.1822 |
+| FCM + TSK (pertenencia Gaussiana) | 97.50% | 0.969 | 0.2371 |
+| 5 gaussianas por gesto + TSK | 98.28% | 0.979 | 0.1016 |
+| K-means rígido + regla de mayoría | 92.04% | 0.906 | 0.0135 |
+| KNN (k=5) | 96.57% | 0.955 | 0.6812 |
+| Random Forest (200 árboles) | 99.06% | 0.989 | 82.9060 |
 
 > La latencia se mide en Python/NumPy sobre esta máquina. El valor de 0.003 ms
 > citado en el contexto corresponde a una implementación optimizada en C para
@@ -67,6 +67,11 @@ Las ecuaciones completas están en `outputs/models/modelo_fcm_tsk.json`
 ![Importancia](../outputs/figures/05_importancia_canales.png)
 ![Pareto](../outputs/figures/06_pareto.png)
 ![Convergencia](../outputs/figures/07_convergencia_fcm.png)
+![Centroides proyectados](../outputs/figures/10_scatter_centroides.png)
+
+La proyección de los centroides a 2D se genera con
+`src/08_scatter_centroides.py`; las coordenadas están en
+`outputs/metrics/proyeccion_centroides.csv`.
 
 ## 6. Advertencias metodológicas
 

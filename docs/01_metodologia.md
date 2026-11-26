@@ -51,6 +51,24 @@ pares *mano abierta/pinza* y *puño cerrado/agarre vaso* comparten estadísticas
 Hudgins. Por eso se incluye también una variante con 5 gaussianas ancladas a
 cada gesto.
 
+### Visualización de los centroides
+
+Cada centroide tiene 32 componentes (4 características de Hudgins × 8 canales),
+por lo que no se puede dibujar directamente en un scatter plot. Primero se
+proyectan las ventanas y los centroides con la **misma** transformación:
+
+* **PCA**, no supervisada: es la vista coherente con FCM, porque no usa las
+  etiquetas. Las dos primeras componentes conservan el 69 % de la varianza.
+* **LDA**, supervisada: solo referencia visual de cuánto se separan las clases;
+  no interviene en el entrenamiento del modelo.
+
+La figura [`10_scatter_centroides.png`](../outputs/figures/10_scatter_centroides.png)
+muestra las nubes por gesto y los 5 centroides marcados como R0…R4. Las
+coordenadas exactas están en
+[`proyeccion_centroides.csv`](../outputs/metrics/proyeccion_centroides.csv).
+La proyección confirma gráficamente el colapso detectado en 32D: R1 coincide con
+R3 y R2 con R4, dejando 3 posiciones distintas.
+
 ### Índices de validación
 
 $$PC=\frac1n\sum_i\sum_k u_{ik}^2,\qquad
@@ -58,7 +76,7 @@ PE=-\frac1n\sum_i\sum_k u_{ik}\ln u_{ik}$$
 
 Ojo: se promedia **por fila**, no por elemento del arreglo. PC cercano a 1
 significa partición rígida; PC cercano a 1/c = 0,2 significa superposición
-máxima. PE máximo es ln(5) ≈ 1,609. Nuestros valores (0,3454 y 1,2856) indican
+máxima. PE máximo es ln(5) ≈ 1,609. Los valores medidos (0,3454 y 1,2856) indican
 superposición moderada-alta, muy cercana a la reportada en el contexto.
 
 ## 4. Fase 3: consecuentes TSK de orden 1
