@@ -1,7 +1,7 @@
-# Análisis comparativo multidimensional (nivel maestría)
+# Análisis comparativo multidimensional
 
 Generado por `src/07_analisis_comparativo.py` a partir de los resultados locales
-y de la propuesta guardada en `referencias/scripts_originales/comparacion_propuesta_notebooklm.txt`.
+medidos en `src/03_evaluar.py`.
 
 ## 0. Regla metodológica: dos planos de evidencia
 
@@ -35,12 +35,12 @@ una arquitectura con muchas reglas. No existe un ganador único: hay una
 
 | Modelo | Exactitud | F1-macro | Latencia (Python) | Interpretabilidad |
 | :--- | ---: | ---: | ---: | :--- |
-| FCM + TSK (pertenencia FCM) | 97.19 % | 0.964 | 0.1083 ms | Intrínseca (caja de cristal) |
-| FCM + TSK (pertenencia Gaussiana) | 97.50 % | 0.969 | 0.1444 ms | Intrínseca (caja de cristal) |
-| 5 gaussianas por gesto + TSK | 98.28 % | 0.979 | 0.0604 ms | Intrínseca (caja de cristal) |
-| K-means rígido + regla de mayoría | 92.04 % | 0.906 | 0.0079 ms | Baja (centroides rígidos) |
-| KNN (k=5) | 96.57 % | 0.955 | 0.4376 ms | Nula |
-| Random Forest (200 árboles) | 99.06 % | 0.989 | 41.5050 ms | Media (importancias post-hoc) |
+| FCM + TSK (pertenencia FCM) | 97.19 % | 0.964 | 0.1100 ms | Intrínseca (caja de cristal) |
+| FCM + TSK (pertenencia Gaussiana) | 97.50 % | 0.969 | 0.1439 ms | Intrínseca (caja de cristal) |
+| 5 gaussianas por gesto + TSK | 98.28 % | 0.979 | 0.0614 ms | Intrínseca (caja de cristal) |
+| K-means rígido + regla de mayoría | 92.04 % | 0.906 | 0.0081 ms | Baja (centroides rígidos) |
+| KNN (k=5) | 96.57 % | 0.955 | 0.4314 ms | Nula |
+| Random Forest (200 árboles) | 99.06 % | 0.989 | 41.9201 ms | Media (importancias post-hoc) |
 
 Aquí sí se puede afirmar: el modelo propuesto gana ~5 puntos al k-means
 rígido, es comparable a KNN y pierde frente a Random Forest, pero es ~300 veces
@@ -59,7 +59,7 @@ Para $c=5$ reglas y $d=32$ características:
 
 ≈ **985 operaciones escalares** por decisión. En C embebido
 eso son microsegundos, lo que hace creíble el valor reportado de 0,003 ms. En
-Python/NumPy medimos 0.1083 ms: el costo lo domina el
+Python/NumPy medimos 0.1100 ms: el costo lo domina el
 *overhead* del interprete, no la aritmética.
 
 ### 3.2 Huella del modelo
@@ -114,7 +114,7 @@ gestos comparten prototipos. Esa limitación se reporta, no se oculta.
 | Wang & Mendel (1992) | Grid partition | Reglas lingüísticas | Extracción de ejemplos | Explosión de reglas en 32 dimensiones |
 | ANFIS | FCM / grid | TSK | Gradiente + mínimos cuadrados | Muchas reglas si no se controla la partición |
 | NEFCON | Base Mamdani | Difusa | Refuerzo en lazo cerrado | Defuzzificación por centroide |
-| **Este trabajo** | FCM (o gaussianas por clase) | TSK orden 1 | WLS ponderado | Requiere validación clínica y split por sujeto |
+| **FCM + TSK (implementación local)** | FCM (o gaussianas por clase) | TSK orden 1 | WLS ponderado | Requiere validación clínica y split por sujeto |
 
 ## 5. Fisiología: por qué el difuso gana al rígido
 
@@ -140,7 +140,7 @@ diafonía en un par de gestos que comparten activación muscular.
 
 La literatura clínica fija ~100–125 ms como tiempo de respuesta percibido como
 instantáneo. Los modelos de inferencia rápida (0,003–0,02 ms) están muy por
-debajo de ese límite. Sin embargo, hay una observación de maestría que suele
+debajo de ese límite. Sin embargo, hay una observación relevante que suele
 omitirse:
 
 > **La latencia de inferencia no es la latencia end-to-end.** El sistema espera
@@ -153,7 +153,7 @@ microsegundos", sino **eliminar el cuello de botella computacional** para que
 el limite lo ponga la fisiología y la mecánica, no el modelo. Reducir la ventana
 de adquisición sin perder exactitud es el siguiente frente de investigación.
 
-## 7. Tesis defendible
+## 7. Planteamiento central
 
 > *"No se propone únicamente un clasificador, sino una comparación formal entre
 > TSK de orden 1 identificado con FCM, Mamdani/NEFCON y Deep Learning. La

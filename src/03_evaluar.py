@@ -339,12 +339,12 @@ Las ecuaciones completas están en `outputs/models/modelo_fcm_tsk.json`
    `TRIM=50` (2.125 ventanas) para descartar transiciones.
 3. La normalización z-score se ajustó solo con entrenamiento.
 
-## 7. Análisis comparativo (nivel maestría)
+## 7. Análisis comparativo
 
-Este informe describe **qué** ocurrió. La discusión de **por qué** esta
-configuración frente a CNN-BiLSTM, TCN int8, Random Forest, Mamdani y ANFIS
-(complejidad, huella de memoria, interpretabilidad, fisiología y Pareto) está
-en [`05_analisis_comparativo.md`](05_analisis_comparativo.md), generado por
+Este informe describe los resultados medidos. La discusión comparativa frente a
+CNN-BiLSTM, TCN int8, Random Forest, Mamdani y ANFIS (complejidad, huella de
+memoria, interpretabilidad, fisiología y Pareto) está en
+[`05_analisis_comparativo.md`](05_analisis_comparativo.md), que se regenera con
 `src/07_analisis_comparativo.py`.
 """
     (DOCS / "03_resultados.md").write_text(md, encoding="utf-8")

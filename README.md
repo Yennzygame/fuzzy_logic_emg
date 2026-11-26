@@ -1,9 +1,9 @@
 # Clasificación interpretable de sEMG con Fuzzy C-Means + TSK
 
-Proyecto para la disciplina **Lógica Fuzzy (PUC-Rio)**. Convierte señales
-electromiográficas de la Myo Armband (8 canales, 200 Hz) en 32 características
-de Hudgins por ventana y clasifica 5 gestos mediante un sistema neuro-difuso
-**FCM + Takagi-Sugeno-Kang de orden 1**.
+Repositorio con el pipeline completo para clasificar gestos a partir de señales
+electromiográficas de la Myo Armband (8 canales, 200 Hz). Cada ventana se resume
+en 32 características de Hudgins y se clasifica en 5 gestos mediante un sistema
+neuro-difuso **FCM + Takagi-Sugeno-Kang de orden 1**.
 
 La motivación es el "trilema" del control protésico: exactitud alta, latencia
 ultra-baja e **interpretabilidad clínica** (caja de cristal), frente a las redes
@@ -25,13 +25,12 @@ CNN/BiLSTM que son caja negra.
 > Las diferencias con el contexto se explican en
 > [`docs/03_resultados.md`](docs/03_resultados.md) y `docs/01_metodologia.md`.
 
-## Análisis comparativo (nivel maestría)
+## Análisis comparativo
 
-Reportar métricas no basta: el proyecto incluye una comparación
-**multidimensional** de cinco paradigmas (CNN-BiLSTM, TCN int8, Random Forest,
-Mamdani, ANFIS y FCM+TSK) que discute complejidad, huella de memoria,
-interpretabilidad intrínseca vs. post-hoc, fisiología de la señal y la
-frontera de Pareto. El principio metodológico central es separar dos planos de
+El repositorio incluye una comparación **multidimensional** de seis paradigmas
+(CNN-BiLSTM, TCN int8, Random Forest, Mamdani, ANFIS y FCM+TSK) que cubre
+complejidad, huella de memoria, interpretabilidad intrínseca vs. post-hoc,
+fisiología de la señal y frontera de Pareto. El principio metodológico central es separar dos planos de
 evidencia: **literatura** (protocolos heterogéneos, solo para mapear el espacio
 de diseño) y **reproducción local** (mismo split, para comparar modelos).
 
@@ -39,8 +38,8 @@ de diseño) y **reproducción local** (mismo split, para comparar modelos).
 [`outputs/metrics/comparacion_multiparadigma.csv`](outputs/metrics/comparacion_multiparadigma.csv) ·
 [`outputs/figures/09_pareto_multiparadigma.png`](outputs/figures/09_pareto_multiparadigma.png)
 
-La propuesta original de esta comparación está conservada en
-`referencias/scripts_originales/comparacion_propuesta_notebooklm.txt`.
+Los criterios de comparación están documentados en
+`referencias/scripts_originales/comparacion_referencia.txt`.
 
 ## Estructura
 
@@ -59,23 +58,23 @@ proyecto_fuzzy_emg/
 │   ├── 02_entrenar_fcm_tsk.py   ← fases 2 y 3
 │   ├── 03_evaluar.py            ← fase 4 (métricas, figuras e informe)
 │   ├── 04_inferencia_tiempo_real.py ← fase 5 (Myo/CSV + PCA9685)
-│   ├── 05_demo_inferencia.py    ← una inferencia paso a paso (para clase)
+│   ├── 05_demo_inferencia.py    ← una inferencia paso a paso
 │   ├── 06_barrido_m.py          ← sensibilidad del exponente m
-│   ├── 07_analisis_comparativo.py ← comparación multiparadigma (maestría)
-│   └── run_all.py               ← ejecuta 01 → 02 → 03
+│   ├── 07_analisis_comparativo.py ← comparación multiparadigma
+│   └── run_all.py               ← ejecuta 01 → 02 → 03 → 07
 ├── outputs/
 │   ├── figures/                 ← 9 figuras PNG
 │   ├── metrics/                 ← CSV/JSON con métricas y matriz de confusión
 │   └── models/                  ← modelo FCM+TSK, reglas y pesos
 ├── docs/
-│   ├── 01_metodologia.md        ← teoría y relación con el material de clase
+│   ├── 01_metodologia.md        ← fundamentos del modelo
 │   ├── 02_guia_ejecucion.md     ← comandos y solución de problemas
 │   ├── 03_resultados.md         ← informe generado automáticamente
-│   ├── 04_banco_de_preguntas.md ← preguntas probables del profesor Tiago
-│   └── 05_analisis_comparativo.md ← discusión comparativa (generado)
+│   ├── 04_preguntas_frecuentes.md ← cuestionario técnico
+│   └── 05_analisis_comparativo.md ← análisis comparativo (generado)
 └── referencias/
-    ├── scripts_originales/      ← 4 .py corregidos + contexto + propuesta de comparación
-    └── material_clase/          ← PDFs y tesis F-DC-125 originales
+    ├── scripts_originales/      ← 4 scripts originales + contexto + criterios de comparación
+    └── material_clase/          ← PDFs y tesis (solo local, no publicado)
 ```
 
 ## Inicio rápido
@@ -93,22 +92,22 @@ python src/04_inferencia_tiempo_real.py --max-muestras 4000
 Todo se ejecuta sin hardware. Para usar la pulsera real, consulta
 [`docs/02_guia_ejecucion.md`](docs/02_guia_ejecucion.md).
 
-## Publicar en GitHub
+## Control de versiones
+
+El repositorio está inicializado en `main` y tiene configurado `origin`. Para
+actualizarlo tras regenerar resultados:
 
 ```bash
 cd proyecto_fuzzy_emg
-git init
-git add .
-git commit -m "Pipeline FCM + TSK para clasificación sEMG (4 gestos + reposo)"
-git remote add origin https://github.com/<TU-USUARIO>/<TU-REPO>.git
-git branch -M main
-git push -u origin main
+git add -A
+git commit -m "Actualizar resultados del pipeline FCM + TSK"
+git push origin main
 ```
 
-El repositorio local ya está inicializado en `main`. La carpeta
-`referencias/material_clase/` (PDFs y tesis) está excluida mediante
-`.gitignore`: se conserva en local pero **no se publica**. Sí se publican los
-scripts originales y el texto de la propuesta comparativa.
+La carpeta `referencias/material_clase/` (PDFs y tesis) y los textos de trabajo
+internos están excluidos mediante `.gitignore`: se conservan en local pero
+**no se publican**. Sí se publican los scripts originales, los datos, los
+resultados y la documentación técnica.
 
 Antes de subir, revisa `data/raw/dataset_completo.csv`: contiene señales de un
 participante. Si el protocolo exige anonimato, publica solo

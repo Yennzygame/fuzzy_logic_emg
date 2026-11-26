@@ -1,4 +1,4 @@
-# Metodología y fundamentos (guía para el aula)
+# Metodología y fundamentos
 
 ## 1. El problema y por qué lógica fuzzy
 
@@ -86,13 +86,13 @@ orden de 10⁻² ms a 10⁻³ ms en C embebido y no necesita universos discretiz
 * Exactitud, F1-macro, matriz de confusión e informe por clase.
 * Comparación con k-means rígido, KNN y Random Forest sobre el **mismo split**.
 * Latencia medida en Python/NumPy (no comparable con la medición en C del
-  artículo). Esta distinción debe decirse siempre en la sustentación.
+  artículo). Esta distinción debe explicitarse en cualquier reporte.
 * Interpretabilidad: `outputs/models/modelo_fcm_tsk.json` contiene los 5
   centros, las matrices $P_k$ (5×5×32) y los vectores $q_k$ (5×5).
 
 ## 6. Fase 5: despliegue
 
-`04_inferencia_tiempo_real.py` conserva la cadena del script corregido
+`04_inferencia_tiempo_real.py` conserva la cadena del script original
 `realtime_servos.py`: filtros causales con estado `sosfilt_zi`, búfer circular de
 150 muestras, inferencia cada `HOP` muestras, votación mayoritaria (`SMOOTH_K=7`),
 rampa de servos y cooldown de 0,7 s. Lo único que cambia es el clasificador:
@@ -117,7 +117,7 @@ TFLite se sustituye por las ecuaciones FCM+TSK en NumPy.
 ## 8. De los resultados a la discusión comparativa
 
 La evaluación (sección 5) responde *qué tan bien funciona* el modelo. La
-pregunta de maestría es *por qué esa configuración y no otra*. El análisis
+pregunta central es *por qué esa configuración y no otra*. El análisis
 comparativo en [`05_analisis_comparativo.md`](05_analisis_comparativo.md)
 amplía esta metodología con cinco ejes que no caben en un informe de resultados:
 
@@ -138,4 +138,5 @@ amplía esta metodología con cinco ejes que no caben en un informe de resultado
    percibido (~800 ms).
 
 Ese documento se genera con `python src/07_analisis_comparativo.py` a partir de
-la propuesta conservada en `referencias/scripts_originales/`.
+los resultados de `src/03_evaluar.py` y de los criterios de comparación
+documentados en el propio análisis.

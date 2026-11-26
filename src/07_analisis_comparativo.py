@@ -1,6 +1,6 @@
-"""Fase 4b: análisis comparativo multidimensional (marco de maestría).
+"""Fase 4b: análisis comparativo multidimensional.
 
-Combina dos planos que nunca deben mezclarse en una misma tabla sin advertencia:
+Mantiene separados dos planos de evidencia:
   1) cifras REPORTADAS en las fuentes (protocolos heterogéneos);
   2) cifras MEDIDAS en esta reproducción (mismo split 70/30).
 
@@ -22,7 +22,7 @@ import pandas as pd
 
 from config import DOCS, FIGURES, METRICS
 
-# -------------------- Plan A: literatura (contexto + propuesta NotebookLM) --------------------
+# -------------------- Plan A: literatura (fuentes publicadas) --------------------
 LITERATURA = [
     {
         "paradigma": "Deep Learning pesado",
@@ -175,10 +175,10 @@ def main():
     principal = local[local["modelo"] == "FCM + TSK (pertenencia FCM)"].iloc[0]
     gaussiana = local[local["modelo"] == "5 gaussianas por gesto + TSK"].iloc[0]
 
-    md = f"""# Análisis comparativo multidimensional (nivel maestría)
+    md = f"""# Análisis comparativo multidimensional
 
 Generado por `src/07_analisis_comparativo.py` a partir de los resultados locales
-y de la propuesta guardada en `referencias/scripts_originales/comparacion_propuesta_notebooklm.txt`.
+medidos en `src/03_evaluar.py`.
 
 ## 0. Regla metodológica: dos planos de evidencia
 
@@ -281,7 +281,7 @@ gestos comparten prototipos. Esa limitación se reporta, no se oculta.
 | Wang & Mendel (1992) | Grid partition | Reglas lingüísticas | Extracción de ejemplos | Explosión de reglas en 32 dimensiones |
 | ANFIS | FCM / grid | TSK | Gradiente + mínimos cuadrados | Muchas reglas si no se controla la partición |
 | NEFCON | Base Mamdani | Difusa | Refuerzo en lazo cerrado | Defuzzificación por centroide |
-| **Este trabajo** | FCM (o gaussianas por clase) | TSK orden 1 | WLS ponderado | Requiere validación clínica y split por sujeto |
+| **FCM + TSK (implementación local)** | FCM (o gaussianas por clase) | TSK orden 1 | WLS ponderado | Requiere validación clínica y split por sujeto |
 
 ## 5. Fisiología: por qué el difuso gana al rígido
 
@@ -307,7 +307,7 @@ diafonía en un par de gestos que comparten activación muscular.
 
 La literatura clínica fija ~100–125 ms como tiempo de respuesta percibido como
 instantáneo. Los modelos de inferencia rápida (0,003–0,02 ms) están muy por
-debajo de ese límite. Sin embargo, hay una observación de maestría que suele
+debajo de ese límite. Sin embargo, hay una observación relevante que suele
 omitirse:
 
 > **La latencia de inferencia no es la latencia end-to-end.** El sistema espera
@@ -320,7 +320,7 @@ microsegundos", sino **eliminar el cuello de botella computacional** para que
 el limite lo ponga la fisiología y la mecánica, no el modelo. Reducir la ventana
 de adquisición sin perder exactitud es el siguiente frente de investigación.
 
-## 7. Tesis defendible
+## 7. Planteamiento central
 
 > *"No se propone únicamente un clasificador, sino una comparación formal entre
 > TSK de orden 1 identificado con FCM, Mamdani/NEFCON y Deep Learning. La

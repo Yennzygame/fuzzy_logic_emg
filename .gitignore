@@ -11,3 +11,7 @@ outputs/models/*.tflite
 
 # Material de clase (PDFs y tesis): se conserva en local, NO se publica en GitHub
 referencias/material_clase/
+
+# Textos de trabajo internos: se conservan en local, NO se publican en GitHub
+referencias/scripts_originales/contexto proyecto logica fuzzy.txt
+referencias/scripts_originales/comparacion_propuesta_notebooklm.txt

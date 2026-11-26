@@ -5,7 +5,7 @@ el filtrado causal, el búfer circular, el suavizado por votación, la rampa de
 movimiento y el cooldown, pero se sustituye TFLite por las ecuaciones TSK.
 
 Modos:
-  --fuente replay  : lee el CSV (sin hardware; ideal para la clase)
+  --fuente replay  : lee el CSV (sin hardware)
   --fuente myo     : Myo Armband + dongle BLED112 (requiere pyomyo)
   --servos         : activa PCA9685 (requiere adafruit_servokit)
   sin --servos     : modo "dry run", solo imprime la pose que se enviaría
