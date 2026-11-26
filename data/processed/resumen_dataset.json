@@ -1,0 +1,47 @@
+{
+  "dataset_crudo": {
+    "archivo": "dataset_completo.csv",
+    "muestras": 107820,
+    "canales": [
+      "CH1",
+      "CH2",
+      "CH3",
+      "CH4",
+      "CH5",
+      "CH6",
+      "CH7",
+      "CH8"
+    ],
+    "frecuencia_hz": 200,
+    "muestras_por_gesto": {
+      "pinza": 35940,
+      "agarre_vaso": 23962,
+      "mano_abierta": 11978,
+      "puño_cerrado": 11980,
+      "reposo": 23960
+    }
+  },
+  "ventaneo": {
+    "window": 150,
+    "hop": 50,
+    "trim": 0,
+    "total_ventanas": 2139,
+    "ventanas_por_gesto": {
+      "pinza": 714,
+      "agarre_vaso": 474,
+      "mano_abierta": 237,
+      "puño_cerrado": 237,
+      "reposo": 477
+    },
+    "num_bloques": 7,
+    "caracteristicas": 32,
+    "zc_threshold": 0.0
+  },
+  "split": {
+    "estrategia": "estratificado aleatorio por ventanas (70/30)",
+    "train": 1498,
+    "test": 641,
+    "semilla": 13
+  },
+  "advertencia": "El split aleatorio por ventanas mezcla ventanas solapadas del mismo bloque entre train y test (fuga de información). Reproduce el protocolo reportado, pero no sirve para reportar desempeño clínico."
+}

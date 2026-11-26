@@ -1,0 +1,7 @@
+modelo,exactitud,f1_macro,f1_weighted,latencia_ms
+FCM + TSK (pertenencia FCM),0.971919,0.964126,0.971006,0.108300
+FCM + TSK (pertenencia Gaussiana),0.975039,0.969310,0.974779,0.144400
+5 gaussianas por gesto + TSK,0.982839,0.978566,0.982600,0.060450
+K-means rígido + regla de mayoría,0.920437,0.906041,0.920123,0.007900
+KNN (k=5),0.965679,0.954651,0.963880,0.437600
+Random Forest (200 árboles),0.990640,0.988638,0.990595,41.504950
